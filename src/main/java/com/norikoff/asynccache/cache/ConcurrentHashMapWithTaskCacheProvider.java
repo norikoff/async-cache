@@ -18,11 +18,7 @@ public abstract class ConcurrentHashMapWithTaskCacheProvider<K, V> {
     private final ScheduledExecutorService scheduledExecutorService;
 
     private void taskDemon() {
-        scheduledExecutorService.scheduleAtFixedRate(initTask(), interval, interval, TimeUnit.MILLISECONDS);
-    }
-
-    private Runnable initTask() {
-        return this::process;
+        scheduledExecutorService.scheduleAtFixedRate(this::process, interval, interval, TimeUnit.MILLISECONDS);
     }
 
 
