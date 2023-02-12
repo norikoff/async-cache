@@ -15,12 +15,12 @@ public class StringCacheService {
 
     public Mono<SimpleDto> get(String key) {
         log.debug("Getting by key: {}", key);
-        return concurrentHashMapCacheProvider.get(key).map(val -> SimpleDto.builder().key(key).value(val).build()).doOnNext(foo -> log.debug("Get by key result: {}", foo));
+        return concurrentHashMapCacheProvider.get(key).map(val -> SimpleDto.builder().key(key).value(val).build()).doOnSuccess(foo -> log.debug("Get by key result: {}", foo));
     }
 
     public Mono<SimpleDto> put(String key, String value) {
         log.debug("Putting by key: {} value: {}", key, value);
-        return concurrentHashMapCacheProvider.put(key, value).map(val -> SimpleDto.builder().key(key).value(val).build()).doOnNext(foo -> log.debug("Putted successful by key: {} value: {}", key, foo));
+        return concurrentHashMapCacheProvider.put(key, value).map(val -> SimpleDto.builder().key(key).value(val).build()).doOnSuccess(foo -> log.debug("Putted successful by key: {} value: {}", key, foo));
     }
 
 }

@@ -10,7 +10,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class ConcurrentHashMapWithCleaningCacheProvider<K, V> {
+// Пример простого кэша с отчисткой устаревших или неиспользуемых данных
+public class ConcurrentHashMapWithCleaningCacheProvider<K, V> implements CacheProvider<K, V> {
 
     private final Map<K, Wrapper<V>> cache;
 

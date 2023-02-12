@@ -9,7 +9,9 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public abstract class ConcurrentHashMapWithTaskCacheProvider<K, V> {
+// Пример универсального абстрактного кэша с protected абстрактным методом process,
+// который должен быть переопределён для асинхронного запроса данных для кэширования из БД, других источников или других асинхронных действий
+public abstract class ConcurrentHashMapWithTaskCacheProvider<K, V> implements CacheProvider<K, V> {
 
     private final Map<K, Wrapper<V>> cache;
 
