@@ -3,7 +3,6 @@ package com.norikoff.asynccache.cache;
 import lombok.Getter;
 import reactor.core.publisher.Mono;
 
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
@@ -23,7 +22,7 @@ public abstract class ConcurrentHashMapWithTaskCacheProvider<K, V> {
     }
 
     private Runnable initTask() {
-        return this::proccess;
+        return this::process;
     }
 
 
@@ -34,7 +33,7 @@ public abstract class ConcurrentHashMapWithTaskCacheProvider<K, V> {
         taskDemon();
     }
 
-    protected abstract void proccess();
+    protected abstract void process();
 
     public Mono<V> put(K key, V value) {
         return Mono.justOrEmpty(Optional.ofNullable(cache.put(key, new Wrapper<>(value))).map(Wrapper::getValue).orElse(null));
